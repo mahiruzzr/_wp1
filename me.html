@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>張政榮 | 個人主頁</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, "Microsoft JhengHei";
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        h1 {
+            margin: 0.5rem 0;
+            font-size: 1.8rem;
+            color: #0f172a;
+        }
+
+        .subtitle {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section {
+            text-align: left;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-label {
+            font-weight: bold;
+            width: 80px;
+            color: var(--secondary-color);
+        }
+
+        .info-value {
+            color: var(--text-color);
+            flex: 1;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="profile-img">榮</div>
+        <h1>張政榮</h1>
+        <div class="subtitle">國立金門大學 資訊工程學系</div>
+
+        <div class="info-section">
+            <div class="info-item">
+                <span class="info-label">學號</span>
+                <span class="info-value">111310546</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">電子郵件</span>
+                <span class="info-value"><a href="mailto:s111310546@student.nqu.edu.tw" style="color: inherit;">s111310546@student.nqu.edu.tw</a></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">電話</span>
+                <span class="info-value">0923335528</span>
+            </div>
+        </div>
+
+        <a href="mailto:s111310546@student.nqu.edu.tw" class="contact-btn">發送郵件給我</a>
+    </div>
+
+</body>
+</html>
+  </div>
+</body>
+</html>
