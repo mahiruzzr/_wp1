@@ -1,0 +1,70 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: searchengine
+      POSTGRES_USER: search
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-search_dev}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U search"]
+      interval: 5s
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      DATABASE_URL: postgres://search:${DB_PASSWORD:-search_dev}@postgres/searchengine
+      INDEX_PATH: /data/index
+      RUST_LOG: info
+    volumes:
+      - ./data/index:/data/index
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  crawler:
+    build:
+      context: .
+      dockerfile: Dockerfile.crawler
+    environment:
+      DATABASE_URL: postgres://search:${DB_PASSWORD:-search_dev}@postgres/searchengine
+    depends_on:
+      - api
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      API_URL: http://api:8080/api/v1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+  caddy:
+    image: caddy:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
+      - api
+
+volumes:
+  pgdata:
+  index_data:
+  caddy_data:
+  caddy_config:
